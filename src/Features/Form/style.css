@@ -4,6 +4,7 @@
   border-radius: 8px;
   max-width: 700px;
   width: 100%;
+  box-shadow: 0 8px 30px rgb(0 0 0 / 63%);
 }
 
 .form__header {
@@ -21,9 +22,8 @@
 
 .form__labelText {
   display: inline-block;
-  width: 100%;
+  width: 30%;
   margin-bottom: 8px;
-  font-weight: bold;
 }
 
 .form__field {

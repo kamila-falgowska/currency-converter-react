@@ -31,40 +31,36 @@ const Form = () => {
         Przelicznik walut
       </h1>
       <fieldset className="form__fieldset">
-        <p>
-          <label>
-            <span className="form__labelText">
-              Kwota w zł*:
-            </span>
-            <input
-              placeholder="Wpisz kwotę w zł"
-              className="form__field"
-              type="number"
-              required
-              step="0.01"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-            />
+        <div className="form__row">
+          <label className="form__labelText">
+            Kwota w zł*:
           </label>
-        </p>
-        <p>
-          <label>
-            <span className="form__labelText">
-              Waluta:
-            </span>
-            <select
-              className="form__field"
-              value={currency}
-              onChange={({ target }) => setCurrency(target.value)}
-            >
-              {currencies.map(({ code, name }) => (
-                <option key={code} value={code}>
-                  {name}
-                </option>
-              ))}
-            </select>
+          <input
+            placeholder="Wpisz kwotę w zł"
+            className="form__field"
+            type="number"
+            required
+            step="0.01"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+          />
+        </div>
+        <div className="form__row">
+          <label className="form__labelText">
+            Waluta:
           </label>
-        </p>
+          <select
+            className="form__field"
+            value={currency}
+            onChange={({ target }) => setCurrency(target.value)}
+          >
+            {currencies.map(({ short, name }) => (
+              <option key={short} value={short}>
+                {name}
+              </option>
+            ))}
+          </select>
+        </div>
         <p>
           <button className="form__button">Przelicz</button>
         </p>
