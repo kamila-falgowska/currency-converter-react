@@ -1,3 +1,29 @@
+# Currency converter 
+
+## Demo
+
+https://kamila-falgowska.github.io/currency-converter-react/
+
+## Description
+
+This simple currency converter is designed to help you convert amounts from three different currencies to Polish zloty (PLN). 
+You can convert Polish Zloty to:
+
+- Euro (EUR)
+- Dollar (USD)
+- Pound sterling (GBP)
+
+## Technology used
+
+- HTML
+- CSS
+- Java Script
+- BEM convention
+- Normalize CSS
+- GIT
+- React
+- Create React App
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
