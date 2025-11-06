@@ -2,6 +2,7 @@ import "./style.css";
 import Result from "./Result";
 import currencies from "./currencies";
 import { useState } from "react";
+import { Clock } from "../Clock";
 
 const Form = () => {
   const [amount, setAmount] = useState("");
@@ -33,6 +34,7 @@ const Form = () => {
 
   return (
     <form className="form" onSubmit={onFormSubmit}>
+      <Clock />
       <h1 className="form__header">
         Przelicznik walut
       </h1>
