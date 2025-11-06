@@ -12,7 +12,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: hsl(199, 98%, 48%);
+  background-image: url("Currency-converter.jpg");
 }
 
 .container {

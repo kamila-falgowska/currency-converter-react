@@ -22,6 +22,12 @@ const Form = () => {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
+
+    if (amount <= 0) {
+      alert("Podaj kwotę większą od zera!");
+      return;
+    }
+
     calculateResult();
   };
 
