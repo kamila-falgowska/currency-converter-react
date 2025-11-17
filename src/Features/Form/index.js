@@ -1,8 +1,18 @@
-import "./style.css";
+import { useState } from "react";
 import Result from "./Result";
 import currencies from "./currencies";
-import { useState } from "react";
 import { Clock } from "../Clock";
+import {
+  FormWrapper,
+  FormHeader,
+  Fieldset,
+  Row,
+  LabelText,
+  Field,
+  SelectField,
+  Button,
+  Info,
+} from "./styled";
 
 const Form = () => {
   const [amount, setAmount] = useState("");
@@ -33,32 +43,24 @@ const Form = () => {
   };
 
   return (
-    <form className="form" onSubmit={onFormSubmit}>
+    <FormWrapper onSubmit={onFormSubmit}>
       <Clock />
-      <h1 className="form__header">
-        Przelicznik walut
-      </h1>
-      <fieldset className="form__fieldset">
-        <div className="form__row">
-          <label className="form__labelText">
-            Kwota w zł*:
-          </label>
-          <input
+      <FormHeader>Przelicznik walut</FormHeader>
+      <Fieldset>
+        <Row>
+          <LabelText>Kwota w zł*:</LabelText>
+          <Field
             placeholder="Wpisz kwotę w zł"
-            className="form__field"
             type="number"
             required
             step="0.01"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
           />
-        </div>
-        <div className="form__row">
-          <label className="form__labelText">
-            Waluta:
-          </label>
-          <select
-            className="form__field"
+        </Row>
+        <Row>
+          <LabelText>Waluta:</LabelText>
+          <SelectField
             value={currency}
             onChange={({ target }) => setCurrency(target.value)}
           >
@@ -67,17 +69,17 @@ const Form = () => {
                 {name}
               </option>
             ))}
-          </select>
-        </div>
+          </SelectField>
+        </Row>
         <p>
-          <button className="form__button">Przelicz</button>
+          <Button>Przelicz</Button>
         </p>
-        <p className="form__info">
+        <Info>
           Kursy pochodzą ze strony nbp.pl z Tabeli nr 187/A/NBP/2024 z dnia 2024-09-25
-        </p>
+        </Info>
         <Result result={result} />
-      </fieldset>
-    </form>
+      </Fieldset>
+    </FormWrapper>
   );
 };
 
