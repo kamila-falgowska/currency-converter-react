@@ -2,6 +2,6 @@ import styled from "styled-components";
 
 export const ClockWrapper = styled.div`
   text-align: right;
-  font-family: monospace;
-  color: #777;
+  font-family: ${({ theme }) => theme.fonts.mono || 'monospace'};
+  color: ${({ theme }) => theme.colors.clockText || theme.colors.textSecondary};
 `;

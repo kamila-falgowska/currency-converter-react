@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FormWrapper = styled.form`
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.formBackground};
   padding: 20px;
   border-radius: 8px;
   max-width: 700px;
@@ -13,7 +13,7 @@ export const FormHeader = styled.h1`
   font-size: 24px;
   margin-bottom: 20px;
   text-align: center;
-  color: hsl(199, 98%, 48%);
+  color: ${({ theme }) => theme.colors.header};
 `;
 
 export const Fieldset = styled.fieldset`
@@ -41,7 +41,7 @@ export const Field = styled.input`
   font-size: 16px;
   margin-bottom: 16px;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
 export const SelectField = styled.select`
@@ -50,11 +50,11 @@ export const SelectField = styled.select`
   font-size: 16px;
   margin-bottom: 16px;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
 export const Button = styled.button`
-  background-color: hsl(199, 98%, 48%);
+  background-color: ${({ theme }) => theme.colors.primary};
   color: white;
   padding: 10px 20px;
   font-size: 16px;
@@ -64,12 +64,12 @@ export const Button = styled.button`
   width: 100%;
 
   &:hover {
-    background-color: hsl(199, 98%, 58%);
+    background-color: ${({ theme }) => theme.colors.primaryHover};
   }
 `;
 
 export const Info = styled.p`
   margin-top: 16px;
   font-size: 12px;
-  color: #555;
+  color: ${({ theme }) => theme.colors.textSecondary};
 `;
