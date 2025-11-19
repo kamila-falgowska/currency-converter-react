@@ -2,7 +2,6 @@ import { createGlobalStyle } from "styled-components";
 import bgImage from "./Currency-converter.jpg";
 
 export const GlobalStyle = createGlobalStyle`
- 
   html {
     box-sizing: border-box;
   }

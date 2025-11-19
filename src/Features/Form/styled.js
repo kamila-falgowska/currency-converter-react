@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const FormWrapper = styled.form`
   background-color: ${({ theme }) => theme.colors.formBackground};
-  padding: 20px;
+  padding: 30px 40px;
   border-radius: 8px;
-  max-width: 700px;
+  max-width: 800px; 
   width: 100%;
   box-shadow: 0 8px 30px rgb(0 0 0 / 63%);
 `;

@@ -8,9 +8,7 @@ export const useCurrentDate = () => {
             setCurrentDate(new Date());
         }, 1000);
 
-        return () => {
-            clearInterval(intervalId);
-        };
+        return () => clearInterval(intervalId);
     }, []);
 
     return currentDate;

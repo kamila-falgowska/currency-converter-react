@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Result from "./Result";
-import currencies from "./currencies";
 import { Clock } from "../Clock";
+import { useRates } from "../../Data/useRates";
 import {
   FormWrapper,
   FormHeader,
@@ -19,66 +19,78 @@ const Form = () => {
   const [currency, setCurrency] = useState("EUR");
   const [result, setResult] = useState(null);
 
-  const calculateResult = () => {
-    const selectedCurrency = currencies.find(({ short }) => short === currency);
-    if (!selectedCurrency) return;
+  const ratesData = useRates();
 
-    const resultValue = +amount / selectedCurrency.rate;
-    setResult({
-      amount: +amount,
+  const calculateResult = () => {
+    if (!ratesData.data) return null;
+    const rate = ratesData.data[currency];
+    if (!rate) return null;
+
+    return {
+      amount: Number(amount),
+      targetAmount: Number(amount) * rate,
       currency,
-      result: resultValue,
-    });
+    };
   };
 
-  const onFormSubmit = (event) => {
-    event.preventDefault();
-
-    if (amount <= 0) {
-      alert("Podaj kwotę większą od zera!");
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    if (!amount || isNaN(amount) || amount <= 0) {
+      alert("Podaj poprawną kwotę większą od zera!");
       return;
     }
-
-    calculateResult();
+    setResult(calculateResult());
   };
 
   return (
     <FormWrapper onSubmit={onFormSubmit}>
       <Clock />
       <FormHeader>Przelicznik walut</FormHeader>
-      <Fieldset>
-        <Row>
-          <LabelText>Kwota w zł*:</LabelText>
-          <Field
-            placeholder="Wpisz kwotę w zł"
-            type="number"
-            required
-            step="0.01"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-          />
-        </Row>
-        <Row>
-          <LabelText>Waluta:</LabelText>
-          <SelectField
-            value={currency}
-            onChange={({ target }) => setCurrency(target.value)}
-          >
-            {currencies.map(({ short, name }) => (
-              <option key={short} value={short}>
-                {name}
-              </option>
-            ))}
-          </SelectField>
-        </Row>
-        <p>
-          <Button>Przelicz</Button>
-        </p>
-        <Info>
-          Kursy pochodzą ze strony nbp.pl z Tabeli nr 187/A/NBP/2024 z dnia 2024-09-25
-        </Info>
-        <Result result={result} />
-      </Fieldset>
+
+      {ratesData.status === "loading" && <Info>Ładuję kursy walut…</Info>}
+      {ratesData.status === "error" && (
+        <Info>❌ Coś poszło nie tak. Pokazuję ostatnie zapisane kursy.</Info>
+      )}
+
+      {ratesData.status === "success" && (
+        <Fieldset>
+          <Row>
+            <LabelText>Kwota w zł*:</LabelText>
+            <Field
+              type="number"
+              placeholder="Wpisz kwotę w zł"
+              required
+              step="0.01"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+            />
+          </Row>
+
+          <Row>
+            <LabelText>Waluta:</LabelText>
+            <SelectField
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value)}
+            >
+              {Object.keys(ratesData.data).map((key) => (
+                <option key={key} value={key}>{key}</option>
+              ))}
+            </SelectField>
+          </Row>
+
+          <p>
+            <Button>Przelicz</Button>
+          </p>
+
+          <Info>
+            Aktualne kursy pobrane z currencyapi.com
+            <br />
+            Data: {ratesData.date}
+          </Info>
+
+          {result && <Result result={result} />}
+        </Fieldset>
+      )}
     </FormWrapper>
   );
 };
