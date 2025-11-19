@@ -31,7 +31,8 @@ export const Row = styled.div`
 
 export const LabelText = styled.label`
   display: inline-block;
-  width: 30%;
+  width: 40%;
+  white-space: nowrap;
   margin-bottom: 8px;
 `;
 
