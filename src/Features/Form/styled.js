@@ -73,4 +73,5 @@ export const Info = styled.p`
   margin-top: 16px;
   font-size: 12px;
   color: ${({ theme }) => theme.colors.textSecondary};
+  text-align: center;
 `;
