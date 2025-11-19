@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import localRates from "./rates.json";
 
-const API_URL = "https://api.currencyapi.com/v3/latest?apikey=cur_live_fhalEG7A7lsua67LMKGjXMsxcNibZJZXhvjKv7TZ";
+const API_URL =
+    "https://api.currencyapi.com/v3/latest?base_currency=PLN&apikey=cur_live_fhalEG7A7lsua67LMKGjXMsxcNibZJZXhvjKv7TZ";
 
 export const useRates = () => {
     const [ratesData, setRatesData] = useState({
